@@ -1,7 +1,7 @@
 package com.cabolabs.cloud.accounts
 
-class SubscriberAccount {
+class SubscriberAccount extends Account {
 
-    static constraints = {
-    }
+   static constraints = {
+   }
 }

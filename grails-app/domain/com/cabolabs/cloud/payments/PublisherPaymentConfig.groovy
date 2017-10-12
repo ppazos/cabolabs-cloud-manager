@@ -1,6 +1,6 @@
 package com.cabolabs.cloud.payments
 
-class PaymentMethod {
+class PublisherPaymentConfig {
 
     static constraints = {
     }

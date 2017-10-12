@@ -16,5 +16,6 @@ class Account {
 
 
    static constraints = {
+      companyAddress2 nullable: true
    }
 }

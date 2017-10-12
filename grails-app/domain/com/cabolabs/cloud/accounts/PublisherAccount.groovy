@@ -1,7 +1,7 @@
 package com.cabolabs.cloud.accounts
 
-class PublisherAccount {
+class PublisherAccount extends Account {
 
-    static constraints = {
-    }
+   static constraints = {
+   }
 }
