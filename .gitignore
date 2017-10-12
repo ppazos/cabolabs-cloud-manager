@@ -39,3 +39,9 @@
 .gradle/buildOutputCleanup/cache.properties.lock
 
 build/.dependencies
+
+*.class
+
+*.bin
+
+*.lock
