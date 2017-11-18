@@ -10,7 +10,7 @@ class Resource {
    boolean isPublished = false
    Date dateCreated
 
-   // remote information about the reosource
+   // remote information/metadata about the resource
    String appUrl       // where the app is published or can be accessed/used
    String docsUrl      // documentation
    String marketingUrl // marketing website of the app

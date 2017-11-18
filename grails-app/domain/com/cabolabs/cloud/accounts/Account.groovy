@@ -12,6 +12,9 @@ class Account {
    String companyAddress2
 
    String country
+   
+   // TODO: add hashed prefix based on the company uid
+   // or maybe use JWT.
    String apiKey = java.util.UUID.randomUUID() as String
 
 
