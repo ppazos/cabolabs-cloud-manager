@@ -2,8 +2,8 @@
 <html lang="en" class="no-js">
 <head>
   <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>
@@ -23,10 +23,15 @@
 <!--
     <asset:stylesheet src="application.css"/>
 -->
+    <asset:stylesheet src="main.css"/>
     <g:layoutHead/>
+    <style>
+    .navbar-brand img {
+      max-height: 24px;
+    }
+    </style>
 </head>
 <body>
-
     <div class="navbar navbar-default navbar-static-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -37,9 +42,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="/#">
-                    <i class="fa grails-icon">
-                        <!--<asset:image src="grails-cupsonly-logo-white.svg"/>-->
-                    </i> Grails
+                  <img src="http://www.cabolabs.com/CaboLabs%20New%20Logo%20Horizontal%20300dpi%20421.png"/>
                 </a>
             </div>
             <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0.8px;">
@@ -50,13 +53,11 @@
         </div>
     </div>
 
+   <div class="container">
     <g:layoutBody/>
+  </div>
 
     <div class="footer" role="contentinfo"></div>
-
-    <div id="spinner" class="spinner" style="display:none;">
-        <g:message code="spinner.alt" default="Loading&hellip;"/>
-    </div>
 
     <asset:javascript src="application.js"/>
 
