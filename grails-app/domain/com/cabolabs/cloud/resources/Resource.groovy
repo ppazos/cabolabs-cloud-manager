@@ -24,6 +24,7 @@ class Resource {
       description nullable: true
       statusUrl nullable: true
       docsUrl nullable: true
+      metadataUrl nullable: true
    }
 
    static transients = ['dimensions', 'plans']
