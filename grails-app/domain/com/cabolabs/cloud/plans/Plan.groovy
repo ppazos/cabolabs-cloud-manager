@@ -19,5 +19,11 @@ class Plan {
 
    static constraints = {
       description nullable: true
+      priceDailyFraction nullable: true
+   }
+
+   def beforeInsert()
+   {
+      this.priceDailyFraction = price / billingPeriod.value
    }
 }
