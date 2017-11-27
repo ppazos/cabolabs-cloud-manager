@@ -4,6 +4,7 @@ import com.cabolabs.cloud.accounts.*
 import com.cabolabs.cloud.resources.*
 import com.cabolabs.cloud.plans.*
 import com.cabolabs.cloud.subscription.*
+import com.cabolabs.cloud.transactions.*
 
 class BootStrap {
 
@@ -54,8 +55,24 @@ class BootStrap {
        // created 100 days ago
        def subscription = PlanAssociation(since:new Date()-100, status:'ACTIVE', plan:plans[0], subscriber:subscribers[0], payments:payment_info).save()
 
+       def close_dates = subscription.billingCycleCloseDatesSince(100)
+
+       // TODO: generate the transaction number per Plan, as a numeric string
        // TODO: sample transactions, one per month since 100 days ago, so we have 3 completed and one running (calculated)
-       def transactions = []
+       def transactions = [
+
+       ]
+
+       def start, i = 1
+       close_dates.each {
+          start = it - subscription.plan.billingPeriod.value
+          transactions << new Transaction(type:'CHARGE', subscription:subscription,
+                                          number:'0000000000'+i,
+                                          billingPeriodFrom:start, billingPeriodTo:it)
+          i++
+       }
+
+       transactions*.save()
 
        // TODO: need a process that calculates charging days from the billing period, and since, and the amount from priceDailyFraction if the period was not reached.
        // use those calculated charging dates as the transaction dates for the transactions above ^

@@ -18,10 +18,11 @@ class Transaction {
    Date billingPeriodTo
 
    // The transaction is for a Plan and Account
-   PlanAssociation planAssociation
+   PlanAssociation subscription
 
    static constraints = {
-      type inList: ['CHARGE', 'CREDIT']
+      type inList: ['CHARGE', 'CREDIT'] // TODO: enum
+      type inList: ['PAID', 'PENDING'] // TODO: enum
       billingPeriodFrom nullable: true
       billingPeriodTo nullable: true
    }
