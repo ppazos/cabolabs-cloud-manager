@@ -1,7 +1,10 @@
-package com.cabolabs.cloud.subscription
+package com.cabolabs.cloud.payments
+
+import com.cabolabs.cloud.accounts.*
 
 class SubscriberPaymentConfig {
 
+   SubscriberAccount subscriber
    String gateway
    String method
    static constraints = {

@@ -3,6 +3,9 @@ package com.cabolabs.cloud.plans
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
+import com.cabolabs.cloud.resources.*
+import com.cabolabs.cloud.accounts.*
+
 @Transactional(readOnly = true)
 class PlanController {
 
@@ -17,9 +20,14 @@ class PlanController {
         respond plan
     }
 
-    def create() {
-        respond new Plan(params)
-    }
+   def create() {
+      // resources of any PublisherAccount of the logged user
+      def resources = Resource.withCriteria {
+         'in'('publisher', PublisherAccount.findAllByContact(session.user))
+      }
+      def billingPeriods = EBillingPeriod.values()
+      respond new Plan(params), model:[resources: resources, billingPeriods: billingPeriods]
+   }
 
     @Transactional
     def save(Plan plan) {

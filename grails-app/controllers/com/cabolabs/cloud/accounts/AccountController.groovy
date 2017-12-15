@@ -6,14 +6,20 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class AccountController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+   static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index(Integer max)
-    {
-        params.max = Math.min(max ?: 10, 100)
-        println Account.list(params)
-        [accountList:Account.list(params), accountCount: Account.count()]
-    }
+   def index(Integer max)
+   {
+      params.max = Math.min(max ?: 10, 100)
+      if (!params.offset) params.offset = 0
+
+      // publisher or subscriber accounts, depending on the user role
+      def list = Account.findAllByContact(session.user)
+
+      //println Account.list(params)
+      //[accountList:Account.list(params), accountCount: Account.count()]
+      [accountList: list, type: session.user.role]
+   }
 
     def show(Account account) {
         respond account

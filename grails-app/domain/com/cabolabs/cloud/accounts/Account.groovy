@@ -1,6 +1,6 @@
 package com.cabolabs.cloud.accounts
 
-import com.cabolabs.cloud.security.UserRole
+import com.cabolabs.cloud.security.User
 
 class Account {
 
@@ -16,7 +16,7 @@ class Account {
    String country
 
    // publisher for PublisherAccount, subscriber for SubscriberAccount
-   UserRole contact
+   User contact
 
    // TODO: add hashed prefix based on the company uid
    // or maybe use JWT.
@@ -24,6 +24,12 @@ class Account {
 
 
    static constraints = {
+      companyUrl nullable: true // subscribers might not have an URL, TODO: require for publishers
       companyAddress2 nullable: true
+   }
+
+   String toString()
+   {
+      return this.companyName
    }
 }

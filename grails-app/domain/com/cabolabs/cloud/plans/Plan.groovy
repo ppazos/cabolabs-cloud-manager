@@ -33,4 +33,9 @@ class Plan {
    {
       this.priceDailyFraction = price / billingPeriod.value
    }
+
+   String toString()
+   {
+      this.name
+   }
 }

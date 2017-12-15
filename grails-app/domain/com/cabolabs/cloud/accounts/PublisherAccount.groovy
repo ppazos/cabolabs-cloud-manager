@@ -4,4 +4,5 @@ class PublisherAccount extends Account {
 
    static constraints = {
    }
+
 }

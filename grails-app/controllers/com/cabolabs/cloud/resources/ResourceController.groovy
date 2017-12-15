@@ -3,6 +3,8 @@ package com.cabolabs.cloud.resources
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
+import com.cabolabs.cloud.accounts.*
+
 @Transactional(readOnly = true)
 class ResourceController {
 
@@ -17,9 +19,11 @@ class ResourceController {
         respond resource
     }
 
-    def create() {
-        respond new Resource(params)
-    }
+   def create() {
+
+      def accounts = PublisherAccount.findAllByContact(session.user)
+      respond new Resource(params), model: [accounts: accounts]
+   }
 
     @Transactional
     def save(Resource resource) {

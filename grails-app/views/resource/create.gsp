@@ -27,7 +27,49 @@
             </g:hasErrors>
             <g:form resource="${this.resource}" method="POST">
                 <fieldset class="form">
-                    <f:all bean="resource"/>
+                    <!--<f:all bean="resource"/>-->
+                    <div class="fieldcontain required">
+                      <label for="name">Name
+                        <span class="required-indicator">*</span>
+                      </label>
+                      <input type="text" name="name" value="" required="" id="name">
+                    </div>
+                    <div class="fieldcontain required">
+                      <label for="description">Description
+                        <span class="required-indicator">*</span>
+                      </label>
+                      <textarea name="description" required="" id="description"></textarea>
+                    </div>
+                    <div class="fieldcontain required">
+                      <label for="publisher">Publisher
+                        <span class="required-indicator">*</span>
+                      </label>
+                      <g:select from="${accounts}" name="publisher" required="" id="publisher" optionKey="id" optionValue="companyName" />
+                    </div>
+
+                    <div class="fieldcontain required">
+                      <label for="isPublished">Is published?
+                        <span class="required-indicator">*</span>
+                      </label>
+                      <g:checkBox name="isPublished" value="${false}" />
+                    </div>
+
+                    <div class="fieldcontain required">
+                      <label for="marketingUrl">Marketing URL
+                        <span class="required-indicator">*</span>
+                      </label>
+                      <input type="text" name="marketingUrl" value="" required="" id="marketingUrl">
+                    </div>
+                    <div class="fieldcontain required">
+                      <label for="appUrl">App URL
+                        <span class="required-indicator">*</span>
+                      </label>
+                      <input type="text" name="appUrl" value="" required="" id="appUrl">
+                    </div>
+
+                    TODO: otras URLs
+                    TODO: form para usar en edit
+
                 </fieldset>
                 <fieldset class="buttons">
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />

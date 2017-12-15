@@ -9,21 +9,26 @@ import com.cabolabs.cloud.plans.*
  */
 class Subscription {
 
+   String id // uuid
    Date dateCreated
    Date since
    Date until
    String status
-   BigDecimal balance = 0.0
 
    SubscriberAccount subscriber
    Plan plan
 
+/* this should be on the account not the subscription
    List payments = []
    static hasMany = [payments:SubscriberPaymentConfig]
+*/
 
    static constraints = {
       until nullable: true
       status inList: ['INACTIVE', 'ACTIVE', 'SUSPENDED', 'CLOSED'] // TODO: enum, closed should happen at the end of the current period.
+   }
+   static mapping = {
+      id generator:'uuid'
    }
 
    static transients = ['transactions', 'billingCycleCloseDates', 'billingCycleStartDates', 'billingCycleCloseDatesSince']

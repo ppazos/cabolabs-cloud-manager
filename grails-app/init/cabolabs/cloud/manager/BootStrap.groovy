@@ -14,42 +14,24 @@ class BootStrap {
        // ================================================
        // Test users
        def users = [
-          new User(username:'admin1', password:'admin1'),
-          new User(username:'publisher1', password:'publisher1'),
-          new User(username:'publisher2', password:'publisher2'),
-          new User(username:'subscriber1', password:'subscriber1'),
-          new User(username:'subscriber2', password:'subscriber2')
+          new User(username:'admin1', password:'admin1', role:'admin'),
+          new User(username:'publisher1', password:'publisher1', role:'publisher'),
+          new User(username:'publisher2', password:'publisher2', role:'publisher'),
+          new User(username:'subscriber1', password:'subscriber1', role:'subscriber'),
+          new User(username:'subscriber2', password:'subscriber2', role:'subscriber')
        ]
 
        users*.save()
 
-       def roles = [
-          new Role(authority:'admin'),
-          new Role(authority:'publisher'),
-          new Role(authority:'subscriber')
-       ]
-
-       roles*.save()
-
-       // Assign roles to users
-       def user_roles = [
-          new UserRole(user:users[0], role:roles[0]),
-          new UserRole(user:users[1], role:roles[1]),
-          new UserRole(user:users[2], role:roles[1]),
-          new UserRole(user:users[3], role:roles[2]),
-          new UserRole(user:users[4], role:roles[2])
-       ]
-
-       user_roles*.save()
        // ================================================
 
 
       // Test accounts, resources and plans
       def publisher_accounts = [
-        new PublisherAccount(contact: user_roles[1], companyName:'CaboLabs',
+        new PublisherAccount(contact: users[1], companyName:'CaboLabs',
                              companyUrl:'https://www.cabolabs.com',
                              companyAddress1:'Juan Paullier 995/703', country:'UY'),
-        new PublisherAccount(contact: user_roles[2], companyName:'Veratech',
+        new PublisherAccount(contact: users[2], companyName:'Veratech',
                              companyUrl:'https://www.cabolabs.com',
                              companyAddress1:'Juan Paullier 995/703', country:'UY')
         //,
@@ -89,21 +71,27 @@ class BootStrap {
       def subscribers = [
          new SubscriberAccount(companyName:'Client1', companyUrl:'http://client1.com',
                                companyAddress1:'123 St. Thomas', country:'US',
-                               contact: user_roles[3])
+                               contact: users[3]),
+         new SubscriberAccount(companyName:'Client2',
+                               companyAddress1:'Miguel Barreiro 3285', country:'UY',
+                               contact: users[4])
       ]
 
       subscribers*.save()
 
-      def payment_info = new SubscriberPaymentConfig(gateway:'stripe', method:"debit/credit").save()
+      def payment_info = new SubscriberPaymentConfig(gateway:'stripe', method:"debit/credit", subscriber:subscribers[0]).save()
 
       def subscription = new Subscription(since:new Date()-100,
                                           status:'ACTIVE',
                                           plan:plans[0],
-                                          subscriber:subscribers[0],
-                                          payments:payment_info)
+                                          subscriber:subscribers[0])
       if (!subscription.validate())
       {
          println subscription.errors
+      }
+      else
+      {
+         subscription.save()
       }
 
       // created 100 days ago

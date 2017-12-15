@@ -18,36 +18,63 @@
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
-<!--
-            <f:table collection="${accountList}" />
--->
-            <table class="table">
-              <thead>
-                <tr>
-                  <th class="sortable"><a href="/account/index?sort=uid&amp;max=10&amp;order=asc">UID</a></th>
-                  <th class="sortable"><a href="/account/index?sort=companyName&amp;max=10&amp;order=asc">Company Name</a></th>
-                  <th class="sortable"><a href="/account/index?sort=companyUrl&amp;max=10&amp;order=asc">Company Url</a></th>
-                  <th class="sortable"><a href="/account/index?sort=companyAddress1&amp;max=10&amp;order=asc">Company Address1</a></th>
-                  <th class="sortable"><a href="/account/index?sort=country&amp;max=10&amp;order=asc">Country</a></th>
-                </tr>
-              </thead>
-              <tbody>
-                <g:each in="${accountList}" var="account">
-                  <tr>
-                    <td><g:link action="show" id="${account.id}">${account.uid}</g:link></td>
-                    <td>${account.companyName}</td>
-                    <td>${account.companyUrl}</td>
-                    <td>${account.companyAddress1}</td>
-                    <td>${account.country}</td>
-                  </tr>
-                </g:each>
 
-              </tbody>
-            </table>
+            <g:if test="${type == 'publisher'}">
+               <table class="table">
+                 <thead>
+                   <tr>
+                     <th class="sortable"><a href="/account/index?sort=uid&max=10&order=asc">UID</a></th>
+                     <th class="sortable"><a href="/account/index?sort=companyName&max=10&order=asc">Company Name</a></th>
+                     <th class="sortable"><a href="/account/index?sort=companyUrl&max=10&order=asc">Company Url</a></th>
+                     <th class="sortable"><a href="/account/index?sort=companyAddress1&max=10&order=asc">Company Address1</a></th>
+                     <th class="sortable"><a href="/account/index?sort=country&max=10&order=asc">Country</a></th>
+                   </tr>
+                 </thead>
+                 <tbody>
+                   <g:each in="${accountList}" var="account">
+                     <tr>
+                       <td><g:link action="show" id="${account.id}">${account.uid}</g:link></td>
+                       <td>${account.companyName}</td>
+                       <td>${account.companyUrl}</td>
+                       <td>${account.companyAddress1}</td>
+                       <td>${account.country}</td>
+                     </tr>
+                   </g:each>
 
-            <div class="pagination">
-                <g:paginate total="${accountCount ?: 0}" />
-            </div>
+                 </tbody>
+               </table>
+            </g:if>
+            <g:if test="${type == 'subscriber'}">
+               <table class="table">
+                 <thead>
+                   <tr>
+                     <th class="sortable"><a href="/account/index?sort=companyName&max=10&order=asc">Company Name</a></th>
+                     <th class="sortable"><a href="/account/index?sort=balance&max=10&order=asc">Balance</a></th>
+                     <th>Actions</th>
+                   </tr>
+                 </thead>
+                 <tbody>
+                   <g:each in="${accountList}" var="account">
+                     <tr>
+                       <td><g:link action="show" id="${account.id}">${account.companyName}</g:link></td>
+                       <td>${account.balance}</td>
+                       <td>
+                         <a href="#" class="btn btn-success">Add credit</a>
+                         <pre>
+    1. abrir modal y mostrar las opciones de pago de la cuenta
+    2. selecciona una opcion, y mostramos pantalla para comenzar el pago (ej. botones de PayPal, integracion de UI con stripe, etc.)
+    3. sigue el proceso del pago (puede ir a otro sitio y volver)
+    4. necesitamos SubscriberPaymentConfigController para listar y gestionar las opciones de pago para los subscribers
+                         </pre>
+                       </td>
+                     </tr>
+                   </g:each>
+
+                 </tbody>
+               </table>
+            </g:if>
+
+
         </div>
     </body>
 </html>

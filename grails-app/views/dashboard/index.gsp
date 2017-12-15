@@ -13,8 +13,8 @@
         </div>
         <div id="list-resource" class="content scaffold-list" role="main">
             <h1><g:message code="dashboard.title" /></h1>
-
-            ...
+            Logged user: ${session.user.username}
+            
         </div>
     </body>
 </html>

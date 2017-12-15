@@ -27,7 +27,62 @@
             </g:hasErrors>
             <g:form resource="${this.plan}" method="POST">
                 <fieldset class="form">
-                    <f:all bean="plan"/>
+                    <!--<f:all bean="plan"/>-->
+                    <div class="fieldcontain required">
+                      <label for="name">Name
+                        <span class="required-indicator">*</span>
+                      </label>
+                      <input type="text" name="name" value="" required="" id="name">
+                    </div>
+                    <div class="fieldcontain required">
+                      <label for="description">Description</label>
+                      <textarea name="description" id="description"></textarea>
+                    </div>
+
+                    <div class="fieldcontain required">
+                      <label for="price">Price
+                        <span class="required-indicator">*</span>
+                      </label>
+                      <input type="number" name="price" value="0.0" required="" id="price" min="0" step="0.01">
+                    </div>
+
+                    <div class="fieldcontain required">
+                      <label for="currency">Currency
+                        <span class="required-indicator">*</span>
+                      </label>
+                      <g:select from="['USD', 'UYU']" name="currency" required="" id="currency" />
+                    </div>
+
+                    <div class="fieldcontain required">
+                      <label for="resource">Resource
+                        <span class="required-indicator">*</span>
+                      </label>
+                      <g:select from="${resources}" name="resource" required="" id="resource" optionKey="id" />
+                    </div>
+
+                    <div class="fieldcontain required">
+                      <label for="isEnabled">Is enabled?
+                        <span class="required-indicator">*</span>
+                      </label>
+                      <g:checkBox name="isEnabled" value="${false}" />
+                    </div>
+
+                    <div class="fieldcontain required">
+                      <label for="billingPeriod">Billing period
+                        <span class="required-indicator">*</span>
+                      </label>
+                      <g:select from="${billingPeriods}" name="billingPeriod" required="" id="billingPeriod" />
+                    </div>
+
+                    <div class="fieldcontain required">
+                      <label for="payMode">Pay mode
+                        <span class="required-indicator">*</span>
+                      </label>
+                      <g:select from="['START_OF_BILLING_PERIOD', 'END_OF_BILLING_PERIOD']" name="payMode" required="" id="payMode" />
+                    </div>
+
+                    // TODO: form template
+
                 </fieldset>
                 <fieldset class="buttons">
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />

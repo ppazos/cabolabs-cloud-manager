@@ -10,4 +10,12 @@ class DashboardController {
 
       render view:'index'
    }
+
+   def subscriber()
+   {
+      // Simulates login from a subscriber user for testing
+      session.user = User.findByUsername('subscriber1')
+
+      render view:'index'
+   }
 }

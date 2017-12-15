@@ -38,4 +38,9 @@ class Resource {
    {
       Plan.findAllByResource(this)
    }
+
+   String toString()
+   {
+      this.name
+   }
 }
