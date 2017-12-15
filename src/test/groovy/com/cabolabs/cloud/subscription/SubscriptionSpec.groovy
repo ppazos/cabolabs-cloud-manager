@@ -1,4 +1,4 @@
-package com.cabolabs.cloud.plans
+package com.cabolabs.cloud.subscription
 
 import grails.test.mixin.TestFor
 import spock.lang.Specification
@@ -7,7 +7,7 @@ import spock.lang.Specification
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
  */
 @TestFor(PlanAssociation)
-class PlanAssociationSpec extends Specification {
+class SubscriptionSpec extends Specification {
 
     def setup() {
     }
