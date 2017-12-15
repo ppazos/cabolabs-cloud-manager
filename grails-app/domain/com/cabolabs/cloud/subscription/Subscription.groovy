@@ -13,7 +13,7 @@ class Subscription {
    Date since
    Date until
    String status
-   BigDecimal balance
+   BigDecimal balance = 0.0
 
    SubscriberAccount subscriber
    Plan plan
