@@ -1,4 +1,4 @@
-package com.cabolabs.cloud.plans
+package com.cabolabs.cloud.subscription
 
 import com.cabolabs.cloud.accounts.*
 import com.cabolabs.cloud.transactions.*
@@ -6,7 +6,7 @@ import com.cabolabs.cloud.transactions.*
 /**
  * Represents the subscription of a subscriber to a resource.
  */
-class PlanAssociation {
+class Subscription {
 
    Date since
    Date until
