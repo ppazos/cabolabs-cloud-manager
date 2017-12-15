@@ -1,6 +1,6 @@
 package com.cabolabs.cloud.transactions
 
-import com.cabolabs.cloud.plans.*
+import com.cabolabs.cloud.subscription.*
 
 class Transaction {
 
@@ -18,7 +18,7 @@ class Transaction {
    Date billingPeriodTo
 
    // The transaction is for a Plan and Account
-   PlanAssociation subscription
+   Subscription subscription
 
    static constraints = {
       type inList: ['CHARGE', 'CREDIT'] // TODO: enum

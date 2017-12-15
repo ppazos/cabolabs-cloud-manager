@@ -2,12 +2,14 @@ package com.cabolabs.cloud.subscription
 
 import com.cabolabs.cloud.accounts.*
 import com.cabolabs.cloud.transactions.*
+import com.cabolabs.cloud.plans.*
 
 /**
  * Represents the subscription of a subscriber to a resource.
  */
 class Subscription {
 
+   Date dateCreated
    Date since
    Date until
    String status
