@@ -21,7 +21,7 @@ class Subscription {
 
    static constraints = {
       until nullable: true
-      status inList: ['INACTIVE', 'ACTIVE', 'SUSPENDED'] // TODO: enum
+      status inList: ['INACTIVE', 'ACTIVE', 'SUSPENDED', 'CLOSED'] // TODO: enum, closed should happen at the end of the current period.
    }
 
    static transients = ['transactions', 'billingCycleCloseDates', 'billingCycleStartDates', 'billingCycleCloseDatesSince']
