@@ -2,7 +2,7 @@ package com.cabolabs.cloud.security
 
 class User {
 
-   String usernane
+   String username
    String password
    Date dateCreated
 
