@@ -4,9 +4,10 @@ import com.cabolabs.cloud.security.User
 
 class Account {
 
+   String id // uuid
    Date dateCreated
 
-   String uid = java.util.UUID.randomUUID() as String
+   //String uid = java.util.UUID.randomUUID() as String
 
    String companyName
    String companyUrl
@@ -26,6 +27,10 @@ class Account {
    static constraints = {
       companyUrl nullable: true // subscribers might not have an URL, TODO: require for publishers
       companyAddress2 nullable: true
+      contact nullable: true // will be null because it is created before the user but will always have a user after the user is created
+   }
+   static mapping = {
+      id generator:'uuid'
    }
 
    String toString()

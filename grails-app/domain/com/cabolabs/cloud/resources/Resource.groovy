@@ -4,6 +4,7 @@ import com.cabolabs.cloud.accounts.*
 
 class Resource {
 
+   String id // uuid
    //String uid = java.util.UUID.randomUUID() as String
    String name
    String description
