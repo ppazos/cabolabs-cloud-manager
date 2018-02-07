@@ -19,16 +19,18 @@
         <div class="message" role="status">${flash.message}</div>
       </g:if>
       <g:hasErrors bean="${this.account}">
-            <ul class="errors" role="alert">
-                <g:eachError bean="${this.account}" var="error">
-                <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-                </g:eachError>
-            </ul>
+        <ul class="errors" role="alert">
+          <g:eachError bean="${this.account}" var="error">
+            <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
+          </g:eachError>
+        </ul>
       </g:hasErrors>
-      <g:form resource="${this.account}" method="POST">
+
+      <g:form action="registerForPlanSave" method="POST">
         <!-- comes when an account should be created after selecting a plan of a resource in an external app or web -->
         <g:hiddenField name="plan_id" value="${params.plan_id}" />
-        
+        <%--<g:hiddenField name="user_id" value="${user_id}" />--%>
+
         <g:render template="form" />
         <fieldset class="buttons">
           <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />

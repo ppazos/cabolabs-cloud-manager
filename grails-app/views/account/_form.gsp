@@ -1,5 +1,18 @@
 <fieldset class="form">
 
+   <div class="fieldcontain required">
+     <label for="user_username">Choose a username
+       <span class="required-indicator">*</span>
+     </label>
+     <input type="text" name="user_username" value="" required="" id="user_username">
+   </div>
+  <div class="fieldcontain required">
+    <label for="user_email">Your email
+      <span class="required-indicator">*</span>
+    </label>
+    <input type="email" name="user_email" value="" required="" id="user_email">
+  </div>
+
   <div class="fieldcontain required">
     <label for="companyName">Company name
       <span class="required-indicator">*</span>
@@ -10,7 +23,7 @@
     <label for="companyUrl">Company URL
       <span class="required-indicator">*</span>
     </label>
-    <input type="text" name="companyUrl" value="" required="" id="companyUrl">
+    <input type="url" name="companyUrl" value="" required="" id="companyUrl">
   </div>
 
   <div class="fieldcontain required">
@@ -19,10 +32,10 @@
     </label>
     <!--
     <input type="text" name="country" value="" required="" id="country">
-    
+
     https://coderwall.com/p/figvlw/full-country-html-select-list-with-continents
     -->
-    <select name="country" id="country">
+    <select name="country" id="country" required="">
       <option value="0" label="Select a country … " selected="selected">Select a country …       </option>
       <optgroup id="country-optgroup-Africa" label="Africa">
       <option value="DZ" label="Algeria">Algeria</option>
