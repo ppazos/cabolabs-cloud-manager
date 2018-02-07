@@ -4,7 +4,7 @@ import com.cabolabs.cloud.resources.*
 
 class Plan {
 
-   String uid = java.util.UUID.randomUUID() as String
+   //String uid = java.util.UUID.randomUUID() as String
    String name
    String description
    boolean isEnabled = false
@@ -27,6 +27,9 @@ class Plan {
       description nullable: true
       priceDailyFraction nullable: true
       payMode inList: ['START_OF_BILLING_PERIOD', 'END_OF_BILLING_PERIOD'] // TODO: enum
+   }
+   static mapping = {
+      id generator:'uuid'
    }
 
    def beforeInsert()

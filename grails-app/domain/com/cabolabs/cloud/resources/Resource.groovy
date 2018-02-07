@@ -4,7 +4,7 @@ import com.cabolabs.cloud.accounts.*
 
 class Resource {
 
-   String uid = java.util.UUID.randomUUID() as String
+   //String uid = java.util.UUID.randomUUID() as String
    String name
    String description
    boolean isPublished = false
@@ -25,6 +25,9 @@ class Resource {
       statusUrl nullable: true
       docsUrl nullable: true
       metadataUrl nullable: true
+   }
+   static mapping = {
+      id generator:'uuid'
    }
 
    static transients = ['dimensions', 'plans']
