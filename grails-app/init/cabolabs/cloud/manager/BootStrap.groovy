@@ -14,11 +14,11 @@ class BootStrap {
        // ================================================
        // Test users
        def users = [
-          new User(username:'admin1', password:'admin1', role:'admin'),
-          new User(username:'publisher1', password:'publisher1', role:'publisher'),
-          new User(username:'publisher2', password:'publisher2', role:'publisher'),
-          new User(username:'subscriber1', password:'subscriber1', role:'subscriber'),
-          new User(username:'subscriber2', password:'subscriber2', role:'subscriber')
+          new User(username:'admin1',      password:'admin1',      role:'admin',      email: 'pablo1@cabolabs.com'),
+          new User(username:'publisher1',  password:'publisher1',  role:'publisher',  email: 'pablo2@cabolabs.com'),
+          new User(username:'publisher2',  password:'publisher2',  role:'publisher',  email: 'pablo3@cabolabs.com'),
+          new User(username:'subscriber1', password:'subscriber1', role:'subscriber', email: 'pablo4@cabolabs.com'),
+          new User(username:'subscriber2', password:'subscriber2', role:'subscriber', email: 'pablo5@cabolabs.com')
        ]
 
        users*.save()
@@ -32,8 +32,8 @@ class BootStrap {
                              companyUrl:'https://www.cabolabs.com',
                              companyAddress1:'Juan Paullier 995/703', country:'UY'),
         new PublisherAccount(contact: users[2], companyName:'Veratech',
-                             companyUrl:'https://www.cabolabs.com',
-                             companyAddress1:'Juan Paullier 995/703', country:'UY')
+                             companyUrl:'https://www.veratech.com',
+                             companyAddress1:'XXXX 12345', country:'ES')
         //,
         //new PublisherAccount(companyName:'GLYMS', companyUrl:'https://www.cabolabs.com', companyAddress1:'Juan Paullier 995/703', country:'UY'),
         //new PublisherAccount(companyName:'VirtualBox', companyUrl:'https://www.cabolabs.com', companyAddress1:'Juan Paullier 995/703', country:'UY'),
@@ -51,12 +51,12 @@ class BootStrap {
 
       // calculates priceDailyFraction from billingPeriod and price
       def plans = [
-        new Plan(name:'Bronze', isEnabled:true, billingPeriod:EBillingPeriod.MONTHLY, price:10.0,  resource:resources[0]),
-        new Plan(name:'Silver', isEnabled:true, billingPeriod:EBillingPeriod.MONTHLY, price:25.0,  resource:resources[0]),
+        new Plan(name:'Bronze', isEnabled:true, billingPeriod:EBillingPeriod.MONTHLY,  price:10.0, resource:resources[0]),
+        new Plan(name:'Silver', isEnabled:true, billingPeriod:EBillingPeriod.MONTHLY,  price:25.0, resource:resources[0]),
         new Plan(name:'Gold',   isEnabled:true, billingPeriod:EBillingPeriod.MONTHLY, price:100.0, resource:resources[0]),
 
-        new Plan(name:'Bronze', isEnabled:true, billingPeriod:EBillingPeriod.MONTHLY, price:15.0,  resource:resources[1]),
-        new Plan(name:'Silver', isEnabled:true, billingPeriod:EBillingPeriod.MONTHLY, price:30.0,  resource:resources[1]),
+        new Plan(name:'Bronze', isEnabled:true, billingPeriod:EBillingPeriod.MONTHLY,  price:15.0, resource:resources[1]),
+        new Plan(name:'Silver', isEnabled:true, billingPeriod:EBillingPeriod.MONTHLY,  price:30.0, resource:resources[1]),
         new Plan(name:'Gold',   isEnabled:true, billingPeriod:EBillingPeriod.MONTHLY, price:120.0, resource:resources[1])
       ]
 
@@ -79,7 +79,8 @@ class BootStrap {
 
       subscribers*.save()
 
-      def payment_info = new SubscriberPaymentConfig(gateway:'stripe', method:"debit/credit", subscriber:subscribers[0]).save()
+      // has some validation errors
+      //def payment_info = new SubscriberPaymentConfig(gateway:'stripe', method:"debit/credit", subscriber:subscribers[0]).save()
 
       def subscription = new Subscription(since:new Date()-100,
                                           status:'ACTIVE',
