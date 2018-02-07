@@ -30,7 +30,7 @@ class Account {
       contact nullable: true // will be null because it is created before the user but will always have a user after the user is created
    }
    static mapping = {
-      id generator:'uuid'
+      id generator:'uuid2'
    }
 
    String toString()

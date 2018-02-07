@@ -28,7 +28,7 @@ class Resource {
       metadataUrl nullable: true
    }
    static mapping = {
-      id generator:'uuid'
+      id generator:'uuid2'
    }
 
    static transients = ['dimensions', 'plans']

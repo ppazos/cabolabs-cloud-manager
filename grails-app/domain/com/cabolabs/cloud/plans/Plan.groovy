@@ -30,7 +30,7 @@ class Plan {
       payMode inList: ['START_OF_BILLING_PERIOD', 'END_OF_BILLING_PERIOD'] // TODO: enum
    }
    static mapping = {
-      id generator:'uuid'
+      id generator:'uuid2'
    }
 
    def beforeInsert()
