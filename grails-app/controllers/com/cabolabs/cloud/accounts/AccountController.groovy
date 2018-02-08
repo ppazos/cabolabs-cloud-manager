@@ -13,7 +13,12 @@ class AccountController {
    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
    def mailService
-   
+   // Grails 2.x
+   //def g = grailsApplication.mainContext.getBean('org.codehaus.groovy.grails.plugins.web.taglib.ApplicationTagLib')
+   // Grails 3.x
+   def g = grailsApplication.mainContext.getBean('org.grails.plugins.web.taglib.ApplicationTagLib')
+
+
    def index(Integer max)
    {
       params.max = Math.min(max ?: 10, 100)
@@ -150,7 +155,8 @@ println "create user"
       def user = new User(username: user_username, email: user_email, role: 'subscriber')
       try
       {
-         println user.save(failOnError: true)
+         user.setPasswordToken() // for pass reset
+         user.save(failOnError: true)
       }
       catch (Exception e)
       {
@@ -166,7 +172,7 @@ println "create account"
       account.contact = user
       try
       {
-         println account.save(failOnError: true)
+         account.save(failOnError: true)
       }
       catch (Exception e)
       {
@@ -192,7 +198,7 @@ println "create subscription"
       // TODO: validate and save account and subscription
       try
       {
-         println association.save(failOnError: true)
+         association.save(failOnError: true)
       }
       catch (Exception e)
       {
@@ -203,11 +209,14 @@ println "create subscription"
 
 
       // TODO: send password reset email
+      // TODO: use async to send it so the user doesnt have to wait
+      def url = g.createLink(controller:'auth', action:'reset', absolute:true, params:[token:user.passwordToken])
+
       mailService.sendMail {
-         to user.user_email
+         to user.email
          from "info@cabolabs.com"
          subject "Finishing your account setup"
-         text 'this is some text'
+         text 'Reset your password here '+ url
       }
 
       session.user_id = user.id
