@@ -49,6 +49,9 @@ dependencies {
 
     // send email
     compile 'org.grails.plugins:mail:2.0.0'
+
+    // quartz jobs
+    compile 'org.grails.plugins:quartz:2.0.13'
 }
 
 bootRun {
