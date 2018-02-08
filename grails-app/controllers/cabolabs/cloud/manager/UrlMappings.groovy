@@ -2,20 +2,24 @@ package cabolabs.cloud.manager
 
 class UrlMappings {
 
-    static mappings = {
-       "/auth/reset"(
-          controller: "auth",
-          action: "resetPassword"
-       )
+   static mappings = {
+      "/"(
+         controller: "auth",
+         action: "login"
+      )
+      "/auth/reset"(
+        controller: "auth",
+        action: "resetPassword"
+      )
 
-        "/$controller/$action?/$id?(.$format)?"{
-            constraints {
-                // apply constraints here
-            }
-        }
+      "/$controller/$action?/$id?(.$format)?"{
+         constraints {
+            // apply constraints here
+         }
+      }
 
-        "/"(view:"/index")
-        "500"(view:'/error')
-        "404"(view:'/notFound')
-    }
+      //"/"(view:"/index") // grails default screen
+      "500"(view:'/error')
+      "404"(view:'/notFound')
+   }
 }

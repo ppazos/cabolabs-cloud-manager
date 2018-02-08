@@ -2,6 +2,12 @@
 server:
   port: 9001
 
+---
+cabolabs:
+   security:
+      min_password_length: 6
+      reset_password_token_valid_days: 5
+---
 grails:
    mail:
      host: ${NOTES_EMAIL_HOST}
@@ -9,6 +15,16 @@ grails:
      username: ${NOTES_EMAIL_USER}
      password: ${NOTES_EMAIL_PASS}
 
+---
+# mask params from logs
+grails:
+    exceptionresolver:
+        params:
+            exclude:
+                - password
+                - newPassword
+                - confirmNewPassword
+                - token
 ---
 grails:
     profile: web

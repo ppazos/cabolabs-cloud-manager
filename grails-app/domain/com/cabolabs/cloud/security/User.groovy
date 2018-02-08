@@ -45,7 +45,7 @@ class User {
       position column: 'role_in_organization'
    }
 
-   static transients = ['passwordToken']
+   static transients = ['passwordToken', 'plainData']
 
    def beforeInsert()
    {
@@ -61,10 +61,17 @@ class User {
    def beforeUpdate()
    {
       println "User.beforeUpdate"
-      if (isDirty('password'))
+      if (hasChanged('password')) // isDirty doesnt work with Grails 3 https://github.com/grails/grails-core/issues/10609
       {
+         println "pass dirty"
          this.password = encodePassword(this.password)
       }
+   }
+
+   // used to put minimum user info on session.user after successful login
+   def getPlainData()
+   {
+      [username: this.username, email: this.email, role: this.role, position: this.position]
    }
 
    // TODO: move to a service

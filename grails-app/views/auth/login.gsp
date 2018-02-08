@@ -28,7 +28,7 @@
     <asset:link rel="stylesheet" href="sb-admin-2.css" type="text/css" />
     <asset:javascript src="sb-admin-2.js" />
 
-    <style type='text/css' media='screen'>
+    <style type="text/css" media="screen">
 	  #login {
 	    margin: 15px 0px;
 	    padding: 0px;
@@ -62,7 +62,7 @@
 	    margin-bottom: 20px;
 	    height: 1%;
 	  }
-	  #login .inner .cssform input[type='text'] {
+	  #login .inner .cssform input[type="text"] {
 	    width: 120px;
 	  }
 	  #login .inner .cssform label {
@@ -123,34 +123,8 @@
   <body>
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
 	   <div class="navbar-header">
-        <!--
-	     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-	       <span class="sr-only">Toggle navigation</span>
-	       <span class="icon-bar"></span>
-	       <span class="icon-bar"></span>
-	       <span class="icon-bar"></span>
-	     </button>
-        -->
-	     <!-- LOGO -->
-	     <a href="http://cabolabs.com" class="navbar-brand" target="_blank"><asset:image src="EHRServer_alpha_72_horizontal.png" class="img-responsive" /></a>
-	     <!-- /LOGO -->
+	     <a href="https://cabolabs.com" class="navbar-brand" target="_blank"><asset:image src="EHRServer_alpha_72_horizontal.png" class="img-responsive" /></a>
 	   </div>
-	   <!-- /.navbar-header -->
-
-	   <g:set var="locale" value="${org.springframework.web.servlet.support.RequestContextUtils.getLocale(request)}" />
-      <ul class="nav navbar-top-links navbar-right">
-        <li>
-          <g:link action="auth" params="[lang:'es']" class="${(locale.language == 'es')?'active':''}">ES</g:link>
-        </li>
-        <li>
-          <g:link action="auth" params="[lang:'en']" class="${(locale.language == 'en')?'active':''}">EN</g:link>
-        </li>
-        <!--
-        <li>
-          <g:link action="auth" params="[lang:'pt']" class="${(locale.language == 'pt')?'active':''}">PT</g:link>
-        </li>
-        -->
-      </ul>
 	 </nav>
 
     <div class="container">
@@ -161,49 +135,32 @@
               <h3 class="panel-title"><g:message code="login.title" /></h3>
             </div>
             <div class="panel-body">
-              <g:if test='${flash.message}'>
-                <div class='login_message'>${flash.message}</div><br/>
+               
+              <g:if test="${flash.message}">
+                <div class="login_message">${flash.message}</div><br/>
               </g:if>
 
-              <form action='${postUrl}' method='POST' id='loginForm' class='cssform' autocomplete='off'>
+              <g:form url="[controller:'auth', action:'login']" method="POST" id="loginForm" class="cssform" autocomplete="off">
                 <fieldset>
                   <div class="form-group">
-                    <label for='username'><g:message code="springSecurity.login.username.label"/></label>
-                    <input type='text' class='form-control' name='j_username' id='username' required="required" />
+                    <label for="username"><g:message code="springSecurity.login.username.label"/></label>
+                    <input type="text" class="form-control" name="username" id="username" required="required" />
                   </div>
                   <div class="form-group">
-                    <label for='password'><g:message code="springSecurity.login.password.label"/></label>
-                    <input type='password' class='form-control' name='j_password' id='password' required="required" value="" />
+                    <label for="password"><g:message code="springSecurity.login.password.label"/></label>
+                    <input type="password" class="form-control" name="password" id="password" required="required" value="" />
                   </div>
-                  <div class="form-group">
-                    <label for='org_number'><g:message code="springSecurity.login.org_number.label"/></label>
-                    <div class="input-group">
-                      <input type='text' class='form-control' name='j_organisation' id='org_number' required="required" />
-                      <span class="input-group-btn">
-                        <button class="btn btn-default" id="help-organization-btn" type="button"><i class="fa fa-question"></i></button>
-                      </span>
-                    </div>
-                    <div id="help-organization" class="help-block"><g:message code="login.organization.help" /></div>
-                  </div>
-                  <%--
-                  <div class="checkbox">
-                    <label>
-                      <input type='checkbox' class='chk' name='${rememberMeParameter}' id='remember_me' <g:if test='${hasCookie}'>checked='checked'</g:if>/>
-                      <g:message code="springSecurity.login.remember.me.label"/>
-                    </label>
-                  </div>
-                  --%>
 
-                  <input type='submit' id="submit" class="btn btn-lg btn-success btn-block" value='${message(code: "springSecurity.login.button")}'/>
+                  <input type="submit" id="submit" class="btn btn-lg btn-success btn-block" value="${message(code: 'springSecurity.login.button')}"/>
 
                   <div class="form-group" style="margin:0; padding:15px 0 15px 0; text-align:center;">
-                    <g:link controller="user" action="forgotPassword">
+                    <g:link action="resetPasswordRequest">
                       <g:message code="springSecurity.login.forgotPassword.label"/>
                     </g:link>
                   </div>
 
                 </fieldset>
-
+<%--
                 <g:if test="${grailsApplication.config.app.allow_web_user_register.toBoolean()}">
                   <fieldset>
                     <div class="form-group" style="margin:0; padding-top:15px; text-align:center; border-top:1px solid #ccc;">
@@ -213,19 +170,20 @@
                     </div>
                   </fieldset>
                 </g:if>
-              </form>
+--%>
+              </g:form>
             </div>
           </div>
-          <div align="center" id="app_version">EHRServer v<g:meta name="app.version"/></div>
+          <div align="center" id="app_version">CaboLabs Cloud Manager v<g:meta name="app.version"/></div>
         </div>
       </div>
     </div>
-    <script type='text/javascript'>
+    <script type="text/javascript">
     (function() {
-      document.forms['loginForm'].elements['j_username'].focus();
+      document.forms["loginForm"].elements["username"].focus();
 
-      $('#help-organization-btn').on('click', function (e) {
-        $('#help-organization').fadeToggle('slow');
+      $("#help-organization-btn").on("click", function (e) {
+        $("#help-organization").fadeToggle("slow");
       });
     })();
     </script>

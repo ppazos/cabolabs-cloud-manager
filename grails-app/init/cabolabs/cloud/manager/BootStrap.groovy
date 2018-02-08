@@ -14,11 +14,11 @@ class BootStrap {
        // ================================================
        // Test users
        def users = [
-          new User(username:'admin1',      password:'admin1',      role:'admin',      email: 'pablo1@cabolabs.com'),
-          new User(username:'publisher1',  password:'publisher1',  role:'publisher',  email: 'pablo2@cabolabs.com'),
-          new User(username:'publisher2',  password:'publisher2',  role:'publisher',  email: 'pablo3@cabolabs.com'),
-          new User(username:'subscriber1', password:'subscriber1', role:'subscriber', email: 'pablo4@cabolabs.com'),
-          new User(username:'subscriber2', password:'subscriber2', role:'subscriber', email: 'pablo5@cabolabs.com')
+          new User(username:'admin1',      password:'admin1',      role:'admin',      email: 'pablo1@cabolabs.com', enabled: true),
+          new User(username:'publisher1',  password:'publisher1',  role:'publisher',  email: 'pablo2@cabolabs.com', enabled: true),
+          new User(username:'publisher2',  password:'publisher2',  role:'publisher',  email: 'pablo3@cabolabs.com', enabled: true),
+          new User(username:'subscriber1', password:'subscriber1', role:'subscriber', email: 'pablo4@cabolabs.com', enabled: true),
+          new User(username:'subscriber2', password:'subscriber2', role:'subscriber', email: 'pablo5@cabolabs.com', enabled: true)
        ]
 
        users*.save()

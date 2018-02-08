@@ -28,7 +28,7 @@
     <asset:link rel="stylesheet" href="sb-admin-2.css" type="text/css" />
     <asset:javascript src="sb-admin-2.js" />
 
-    <style type='text/css' media='screen'>
+    <style type="text/css" media="screen">
      #login {
        margin: 15px 0px;
        padding: 0px;
@@ -62,7 +62,7 @@
        margin-bottom: 20px;
        height: 1%;
      }
-     #login .inner .cssform input[type='text'] {
+     #login .inner .cssform input[type="text"] {
        width: 120px;
      }
      #login .inner .cssform label {
@@ -107,17 +107,17 @@
               <h3 class="panel-title">Please enter your email to reset your password</h3>
             </div>
             <div class="panel-body">
-              <g:if test='${flash.message}'>
-                <div class='login_message'>${flash.message}</div><br/>
+              <g:if test="${flash.message}">
+                <div class="login_message">${flash.message}</div><br/>
               </g:if>
 
-              <g:form url="[action:'forgotPassword']" method='POST' id="form" class='cssform' autocomplete='off'>
+              <g:form url="[action:'resetPasswordRequest']" method="POST" id="form" class="cssform" autocomplete="off">
                 <fieldset>
                   <div class="form-group">
-                    <label for='email'><g:message code="springSecurity.forgotPassword.email.label"/>:</label>
-                    <input type='email' class='form-control' name='email' id='email' required="required" value="${params.email}" />
+                    <label for="email"><g:message code="springSecurity.forgotPassword.email.label"/>:</label>
+                    <input type="email" class="form-control" name="email" id="email" required="required" value="${params.email}" />
                   </div>
-                  <input type='submit' id="submit" class="btn btn-lg btn-success btn-block" value='${message(code: "springSecurity.reset.button")}'/>
+                  <input type="submit" id="submit" class="btn btn-lg btn-success btn-block" value="${message(code: 'springSecurity.reset.button')}"/>
                 </fieldset>
                 <fieldset>
                   <div class="form-group" style="margin:0; padding-top:15px; text-align:center; border-top:1px solid #ccc;">
@@ -132,9 +132,9 @@
         </div>
       </div>
     </div>
-    <script type='text/javascript'>
+    <script type="text/javascript">
     (function() {
-      document.forms['form'].elements['email'].focus();
+      document.forms["form"].elements["email"].focus();
     })();
     </script>
   </body>
