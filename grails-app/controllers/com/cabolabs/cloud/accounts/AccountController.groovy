@@ -12,6 +12,8 @@ class AccountController {
 
    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+
+   // send email with link
    def mailService
    // Grails 2.x
    //def g = grailsApplication.mainContext.getBean('org.codehaus.groovy.grails.plugins.web.taglib.ApplicationTagLib')
@@ -208,7 +210,7 @@ println "create subscription"
       }
 
 
-      // TODO: send password reset email
+      // send password reset email
       // TODO: use async to send it so the user doesnt have to wait
       def url = g.createLink(controller:'auth', action:'reset', absolute:true, params:[token:user.passwordToken])
 
